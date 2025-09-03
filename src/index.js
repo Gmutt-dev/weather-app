@@ -11,7 +11,7 @@ async function getWeatherByCity(city) {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.log(error);
+    alert(error);
   }
 }
 
@@ -22,6 +22,6 @@ getWeatherByCity(userCity)
     const celcius =
       ((Number.parseFloat(data.currentConditions.temp) - 32) * 5) / 9;
 
-    document.body.innerText = `The temperature in ${userCity[0].toUpperCase() + userCity.slice(1)} is currently ${Math.trunc(data.currentConditions.temp * 10) / 10} degrees fahrenheit or ${Math.trunc(celcius * 10) / 10} degrees Celcius`;
+    document.body.innerText = `The temperature in ${userCity[0].toUpperCase() + userCity.slice(1)} is currently ${Math.trunc(data.currentConditions.temp * 10) / 10} degrees Fahrenheit or ${Math.trunc(celcius * 10) / 10} degrees Celcius`;
   })
   .catch((err) => console.log(err));
