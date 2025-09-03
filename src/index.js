@@ -22,6 +22,8 @@ getWeatherByCity(userCity)
     const celcius =
       ((Number.parseFloat(data.currentConditions.temp) - 32) * 5) / 9;
 
-    document.body.innerText = `The temperature in ${userCity[0].toUpperCase() + userCity.slice(1)} is currently ${Math.trunc(data.currentConditions.temp * 10) / 10} degrees Fahrenheit or ${Math.trunc(celcius * 10) / 10} degrees Celcius`;
+    document.body.innerHTML = `<div>
+    The temperature in ${userCity[0].toUpperCase() + userCity.slice(1)} is currently ${Math.trunc(data.currentConditions.temp * 10) / 10} degrees Fahrenheit or ${Math.trunc(celcius * 10) / 10} degrees Celcius
+    </div>`;
   })
   .catch((err) => console.log(err));
