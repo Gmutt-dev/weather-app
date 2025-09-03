@@ -1,1 +1,27 @@
 import "./styles.css";
+
+const API_KEY = "5HAJVFLL3K77Y9KUYTSR56RVT";
+
+async function getWeatherByCity(city) {
+  try {
+    const response = await fetch(
+      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=us&key=${API_KEY}&contentType=json`,
+      { mode: "cors" },
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+const userCity = prompt("Please enter city and submit");
+
+getWeatherByCity(userCity)
+  .then((data) => {
+    const celcius =
+      ((Number.parseFloat(data.currentConditions.temp) - 32) * 5) / 9;
+
+    document.body.innerText = `The temperature in ${userCity[0].toUpperCase() + userCity.slice(1)} is currently ${Math.trunc(data.currentConditions.temp * 10) / 10} degrees fahrenheit or ${Math.trunc(celcius * 10) / 10} degrees Celcius`;
+  })
+  .catch((err) => console.log(err));
