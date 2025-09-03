@@ -16,12 +16,14 @@ async function getWeatherByCity(city) {
 }
 
 const userCity = prompt("Please enter city and submit");
+document.body.innerHTML = `<div>
+Loading...
+</div>`;
 
 getWeatherByCity(userCity)
   .then((data) => {
     const celcius =
       ((Number.parseFloat(data.currentConditions.temp) - 32) * 5) / 9;
-
     document.body.innerHTML = `<div>
     The temperature in ${userCity[0].toUpperCase() + userCity.slice(1)} is currently ${Math.trunc(data.currentConditions.temp * 10) / 10} degrees Fahrenheit or ${Math.trunc(celcius * 10) / 10} degrees Celcius
     </div>`;
